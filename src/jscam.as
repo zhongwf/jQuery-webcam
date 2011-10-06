@@ -14,6 +14,7 @@ import flash.system.Security;
 import flash.external.ExternalInterface;
 import flash.display.BitmapData;
 import JPGEncoder;
+import flash.geom.Matrix;
 
 class JSCam {
 
@@ -81,6 +82,10 @@ class JSCam {
 			_root.video.attachVideo(camera);
 			_root.video._x = 0;
 			_root.video._y = 0;
+			
+			var m = new flash.geom.Matrix(-1, 0, 0, 1, _root.video._width, 0);
+			var tm1 = new flash.geom.Transform(_root.video);
+			tm1.matrix = m;
 
 		} else {
 			ExternalInterface.call('webcam.debug', "error", "No camera was detected.");

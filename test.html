@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="jquery.webcam.js"></script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#camera").webcam({
+				        width: 320,
+				        height: 240,
+				        mode: "callback",
+				        swffile: "jscam.swf",
+				        onTick: function() {},
+				        onSave: function() {},
+				        onCapture: function() {},
+				        debug: function() {},
+				        onLoad: function() {}
+				});
+			});
+		</script>
+	</head>
+	
+	<body>
+		<!--<canvas id="canvas" height="240" width="320">-->
+		<div id="camera">
+		</div>
+	</body>
+</html>
