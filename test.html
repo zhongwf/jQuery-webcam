@@ -5,15 +5,19 @@
 		
 		<script>
 			$(document).ready(function(){
-				$("#camera").webcam({
+				$("#webcam").webcam({
 				        width: 320,
 				        height: 240,
 				        mode: "callback",
 				        swffile: "jscam.swf",
 				        onTick: function() {},
 				        onSave: function() {},
-				        onCapture: function() {},
-				        debug: function() {},
+				        onCapture: function() {
+									webcam.save();
+								},
+				        debug: function() {
+									$("#status").html(type + ": " + string);
+								},
 				        onLoad: function() {}
 				});
 			});
@@ -22,7 +26,10 @@
 	
 	<body>
 		<!--<canvas id="canvas" height="240" width="320">-->
-		<div id="camera">
+		<div id="webcam">
+		</div>
+		<a href="javascript:webcam.capture();void(0);">Take a picture instantly</a>
+		<div id="status">
 		</div>
 	</body>
 </html>

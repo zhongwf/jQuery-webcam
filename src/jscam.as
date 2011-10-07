@@ -98,10 +98,16 @@ class JSCam {
 
 			if (null != buffer) {
 				return false;
-			}
+			} 
 
 			buffer = new BitmapData(Stage.width, Stage.height);
 			ExternalInterface.call('webcam.debug', "notify", "Capturing started.");
+			
+			var snd:Sound = new Sound(_root);
+			snd.loadSound("camera_shutter.mp3");
+			snd.onLoad = function(success){
+				snd.start();
+			}
 
 			if ("stream" == mode) {
 				_stream();
