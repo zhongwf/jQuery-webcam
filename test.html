@@ -88,7 +88,7 @@ object {
 	top: 0;
 	width: 100%;
 	height: 427px;
-	background: url(/img/jqwc-overlay.jpg) no-repeat left -430px;
+	background: url(img/jqwc-overlay.jpg) no-repeat left -430px;
 	z-index: 2500;
 	opacity: 0.5;
 	-moz-transition-duration: 1s;
@@ -157,7 +157,7 @@ object {
 </style>
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="/jqwc/jquery.webcam.js"></script>
+	<script type="text/javascript" src="jquery.webcam.js"></script>
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -175,7 +175,7 @@ object {
 
 
 <div id="gubbins">
-	<div id="message" style="display: none;">Please click <img src="/img/allow-button.gif" /> so that Flash can access your webcam.</div>
+	<div id="message" style="display: none;">Please click <img src="img/allow-button.gif" /> so that Flash can access your webcam.</div>
 
 	<p id="status"></p>
 </div>
@@ -193,7 +193,7 @@ $(function() {
 		filter_id = 0,
 		front = false,
 		message = {
-			'start' : 'Please click <img src="/img/allow-button.gif" /> so that Flash can access your webcam.',
+			'start' : 'Please click <img src="img/allow-button.gif" /> so that Flash can access your webcam.',
 			'front' : 'Right, lets start by taking a photo from the front.<br />Make sure you can be seen clearly against the background.<br />Once you click the button you will have 3 seconds to get into position.<a href="#" id="take-photo" class="button blue-button">take photo</a>',
 			'side' : 'Ok, time for a picture from the side. <a href="#" id="take-photo" class="button blue-button">take photo</a>',
 			'finished' : 'Finished. <a href="#" id="take-photo" class="button blue-button">next step</a>'
@@ -227,7 +227,7 @@ $(function() {
 		width: 640,
 		height: 480,
 		mode: "callback",
-		swffile: "/jqwc/jscam.swf",
+		swffile: "jscam.swf",
 		onTick: function(remain) {
 			if (0 == remain) {
 				jQuery("#status").text("Cheese!");
@@ -305,7 +305,7 @@ $(function() {
 		debug: function (type, string) {
 			jQuery("#status").html(type + ": " + string);
 			
-			if (string == 'Camera started')
+			if (string == 'camera-started')
 			{
 				$('.overlay').fadeIn();
 				$('#message').fadeOut(500,function(){
@@ -320,12 +320,12 @@ $(function() {
 	
 		onLoad: function () {
 			var cams = webcam.getCameraList();
-			if (cams.length > 0) {
+			//if (cams.length > 0) {
 				$('#message').fadeIn();
-			}
-			else {
-				$('#status').html('No webcam detected.');
-			}
+			//}
+			//else {
+				//$('#status').html('No webcam detected.');
+			//}
 		}
 	});
 	

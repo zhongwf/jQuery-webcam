@@ -24,10 +24,17 @@ class JSCam {
 	private static var interval = null;
 	private static var stream = null;
 	private static var mode = "callback";
+	private static var snd:Sound;
 
 	public static function main():Void {
 
 		System.security.allowDomain("*");
+		
+		snd = new Sound(_root);
+		snd.loadSound("camera_shutter.mp3");
+		snd.onLoad = function(success){
+			//snd.start();
+		}
 
 		if (_root.mode) {
 			mode = _root.mode;
@@ -69,7 +76,7 @@ class JSCam {
 			}
 
 			camera.setQuality(0, 100);
-			camera.setMode(Stage.width, Stage.height, 24, false);
+			camera.setMode(640, 480, 24, false);
 
 			ExternalInterface.addCallback("capture", null, capture);
 
@@ -102,12 +109,6 @@ class JSCam {
 
 			buffer = new BitmapData(Stage.width, Stage.height);
 			ExternalInterface.call('webcam.debug', "notify", "capturing-started");
-			
-			var snd:Sound = new Sound(_root);
-			snd.loadSound("camera_shutter.mp3");
-			snd.onLoad = function(success){
-				snd.start();
-			}
 
 			if ("stream" == mode) {
 				_stream();
@@ -134,6 +135,7 @@ class JSCam {
 		}
 
 		if (0 == time) {
+			snd.start();
 			buffer.draw(_root.video);
 			ExternalInterface.call('webcam.onCapture');
 			ExternalInterface.call('webcam.debug', "notify", "capturing-finished");
